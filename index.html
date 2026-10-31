@@ -185,7 +185,17 @@ h3 { font-weight: 400; }
 .music-layout { display: grid; gap: 36px; }
 @media (min-width: 900px) { .music-layout { grid-template-columns: 4fr 7fr; gap: 72px; align-items: start; } }
 .music-side p { color: var(--mute); margin-top: 18px; max-width: 26rem; }
-.album-btn { margin-top: 28px; }
+.album { margin-top: 32px; max-width: 300px; }
+.album-cover {
+  display: block; position: relative; overflow: hidden; aspect-ratio: 1 / 1; background: #171b20;
+  background-image: linear-gradient(135deg, #1a1f25 0%, #0f1215 100%); border: 1px solid var(--line);
+}
+.album-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .4s; }
+.album-cover:hover img { transform: scale(1.03); }
+.album-cover.noimg img { opacity: 0; }
+.album-title { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; line-height: 1.2; margin-top: 18px; }
+.music-side .album-desc { color: var(--mute); font-size: .95rem; line-height: 1.5; margin-top: 6px; }
+.album .cta { margin-top: 20px; padding: 11px 20px; font-size: .72rem; }
 .vol { display: flex; align-items: center; gap: 14px; margin-top: 30px; color: var(--mute); font-size: .88rem; }
 .vol svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 #volRange { -webkit-appearance: none; appearance: none; width: min(200px, 100%); height: 20px; background: transparent; cursor: pointer; margin: 0; }
@@ -394,7 +404,14 @@ dialog.lightbox {
       <div class="music-side">
         <h2>Selected music</h2>
         <p>Cues from our scores. Press play and keep scrolling.</p>
-        <a class="cta album-btn" id="albumBtn" href="#music" rel="noopener">Stream the On the Road album →</a>
+        <div class="album">
+          <a class="album-cover" id="albumCover" href="#music" rel="noopener" aria-label="Planet 14: listen on streaming platforms">
+            <img src="images/planet-14.jpg" alt="Cover of the album Planet 14 by malysh&amp;karlson" loading="lazy" width="1200" height="1200">
+          </a>
+          <h3 class="album-title">malysh&amp;karlson – Planet 14</h3>
+          <p class="album-desc">Original soundtrack album for the series On the Road.</p>
+          <a class="cta" id="albumBtn" href="#music" rel="noopener">Listen on streaming →</a>
+        </div>
         <div class="vol" id="vol" hidden>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></svg>
           <label for="volRange">Volume</label>
@@ -575,7 +592,7 @@ dialog.lightbox {
 
   /* ---------- Links to fill in later ---------- */
   var LINKS = {
-    album: "https://zvonko.link/EN/planet14",   // "On the Road" album
+    album: "https://zvonko.link/EN/planet14",   // Planet 14 album (soundtrack of On the Road)
     instagram: "",                                // Instagram profile URL (icon is hidden until the link exists)
     whatsapp: "https://wa.me/79111704222"         // WhatsApp (same number as in Contact)
   };
@@ -633,8 +650,8 @@ dialog.lightbox {
   sizeHero(true); onScroll();
 
   /* ---------- Missing images: keep a neutral dark placeholder ---------- */
-  function markMissing(img) { var t = img.closest(".thumb, .about-photo"); if (t) t.classList.add("noimg"); }
-  document.querySelectorAll(".thumb img, .about-photo img").forEach(function (img) {
+  function markMissing(img) { var t = img.closest(".thumb, .about-photo, .album-cover"); if (t) t.classList.add("noimg"); }
+  document.querySelectorAll(".thumb img, .about-photo img, .album-cover img").forEach(function (img) {
     if (img.complete && img.naturalWidth === 0) markMissing(img);
     img.addEventListener("error", function () { markMissing(img); });
   });
@@ -646,6 +663,7 @@ dialog.lightbox {
     else { el.addEventListener("click", function (e) { e.preventDefault(); }); }
   }
   wire($("albumBtn"), LINKS.album, true);
+  wire($("albumCover"), LINKS.album, true);
   wire($("linkWhatsapp"), LINKS.whatsapp, true);
 
   /* ---------- Video lightbox (Kinescope) ---------- */
