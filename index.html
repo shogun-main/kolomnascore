@@ -187,13 +187,17 @@ h3 { font-weight: 400; }
 .play svg { width: 18px; height: 18px; margin-left: 3px; fill: var(--bone); transition: fill .25s; }
 .card:hover .play { background: var(--bone); border-color: var(--bone); }
 .card:hover .play svg { fill: var(--ink); }
-.card-wrap { position: relative; min-width: 0; container-type: inline-size; }
+.card-wrap { --h3: clamp(1.6rem, 3.4vw, 2rem); position: relative; min-width: 0; container-type: inline-size; }
+.grid.more .card-wrap { --h3: clamp(1.3rem, 2.2vw, 1.5rem); }
 /* Film-database logos sit on the title row, right edge: top = 16:9 thumbnail + gap, centred on the h3 line.
    IMDb logo file already includes its required clear space (two "i"s), so it is shown at 44 px height. */
-.card-links { position: absolute; right: -6px; top: calc(56.25cqw + 18px + (1.1 * clamp(1.6rem, 3.4vw, 2rem) - 44px) / 2); display: flex; align-items: center; }
+.card-links { position: absolute; right: -6px; top: calc(56.25cqw + 18px + (1.1 * var(--h3) - 44px) / 2); display: flex; align-items: center; }
 .logo { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; }
 .logo-imdb img { height: 44px; width: auto; }
 .logo-kp img { height: 28px; width: 28px; }
+.grid.more .logo-kp img { height: 24px; width: 24px; }
+@media (min-width: 900px) and (max-width: 1099px) { .grid.main .logo-imdb img { height: 36px; } .grid.main .logo-kp img { height: 24px; width: 24px; } }
+.grid.more .card-links { right: -10px; }
 .logo img { display: block; transition: transform .25s; }
 .logo:hover img, .logo:focus-visible img { transform: translateY(-1px); }
 .card-body { padding-top: 18px; display: grid; gap: 4px; }
@@ -283,6 +287,14 @@ h3 { font-weight: 400; }
 .about-photo { margin: 0; aspect-ratio: 3 / 2; }
 .about-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.88) contrast(1.04); }
 .about-photo::after { content: ""; position: absolute; inset: 0; background: rgba(13,16,19,.32); pointer-events: none; }
+.about-layout { align-items: start; }
+.about-photo { margin-top: 8px; }
+.people { list-style: none; margin: 36px 0 0; padding: 20px 0 0; border-top: 1px solid var(--line); display: grid; gap: 4px; max-width: 40rem; }
+.people li { display: flex; align-items: center; gap: 0; }
+.people .logo-imdb img { height: 32px; }
+.people .logo-kp img { height: 20px; width: 20px; }
+.people .logo { min-width: 44px; }
+.people .pname { font-family: var(--font-display); font-weight: 300; font-size: 1.25rem; min-width: 6.5rem; }
 .about-copy h2 { margin-bottom: 24px; }
 .about-text { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.25rem, 2.3vw, 1.6rem); line-height: 1.45; max-width: 40rem; text-wrap: pretty; }
 
@@ -343,6 +355,36 @@ dialog.lightbox {
   .thumb img, .hero-media video, .hero-media iframe { transition: none; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KOLOMNA SCORE",
+  "url": "https://kolomnascore.com/",
+  "description": "A composer duo writing original scores for features, series, theatre and live shows.",
+  "email": "info@kolomnascore.com",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Vlad",
+      "jobTitle": "Composer",
+      "sameAs": [
+        "https://www.imdb.com/name/nm18119977/",
+        "https://www.kinopoisk.ru/name/10366662/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "name": "Artiom",
+      "jobTitle": "Composer",
+      "sameAs": [
+        "https://www.imdb.com/name/nm18119975/",
+        "https://www.kinopoisk.ru/name/10375398/"
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -535,6 +577,7 @@ dialog.lightbox {
           </div>
         </a>
 
+        <div class="card-wrap">
         <a class="card" href="#on-the-road" data-kinescope="sGGrZvw14cUsDQLYgQG9ig">
           <div class="thumb"><img src="images/on-the-road.jpg" alt="On the Road, still frame" loading="lazy" width="800" height="450">
             <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17L20.5 12z"/></svg></span></div>
@@ -545,6 +588,10 @@ dialog.lightbox {
             <p class="work">Original score. Soundtrack album on streaming as malysh&amp;karlson.</p>
           </div>
         </a>
+        <div class="card-links">
+          <a class="logo logo-kp" href="https://www.kinopoisk.ru/series/5247356/" target="_blank" rel="noopener" aria-label="On the Road on Kinopoisk (opens in a new tab)"><img src="images/logo-kinopoisk.svg" alt="" width="24" height="24"></a>
+        </div>
+        </div>
 
         <a class="card" href="#the-archer" data-kinescope="cW6Y9usJLVZoQgnXzjGXWC">
           <div class="thumb"><img src="images/the-archer.jpg" alt="The Archer, promo film" loading="lazy" width="800" height="450">
@@ -556,6 +603,7 @@ dialog.lightbox {
           </div>
         </a>
 
+        <div class="card-wrap">
         <a class="card" href="#unwritten-memoirs" data-kinescope="f6boaacJkwhn4HBFNrgLa8">
           <div class="thumb"><img src="images/memoirs.jpg" alt="Unwritten Memoirs, documentary" loading="lazy" width="800" height="450">
             <span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5v17L20.5 12z"/></svg></span></div>
@@ -566,6 +614,10 @@ dialog.lightbox {
             <p class="work">Original score.</p>
           </div>
         </a>
+        <div class="card-links">
+          <a class="logo logo-kp" href="https://www.kinopoisk.ru/film/6588352/" target="_blank" rel="noopener" aria-label="Unwritten Memoirs on Kinopoisk (opens in a new tab)"><img src="images/logo-kinopoisk.svg" alt="" width="24" height="24"></a>
+        </div>
+        </div>
 
         <a class="card" href="#four-of-us" data-kinescope="b3jK3bX42KdArB4Hn2hHWW">
           <div class="thumb"><img src="images/four-of-us.jpg" alt="Four of Us, short film" loading="lazy" width="800" height="450">
@@ -589,6 +641,14 @@ dialog.lightbox {
       <div class="about-copy">
         <h2>About</h2>
         <p class="about-text">Vlad and Artiom are a composer and sound design duo based in Saint Petersburg. We write for film, series, stage and live shows, from intimate piano to dark electronic and orchestral. We record live musicians in the studio and remotely, and work with directors on set or over video. English, French and Russian.</p>
+        <ul class="people">
+          <li><span class="pname">Vlad</span>
+            <a class="logo logo-imdb" href="https://www.imdb.com/name/nm18119977/" target="_blank" rel="noopener" aria-label="Vlad on IMDb (opens in a new tab)"><img src="images/logo-imdb.svg" alt="" width="79" height="44"></a>
+            <a class="logo logo-kp" href="https://www.kinopoisk.ru/name/10366662/" target="_blank" rel="noopener" aria-label="Vlad on Kinopoisk (opens in a new tab)"><img src="images/logo-kinopoisk.svg" alt="" width="28" height="28"></a></li>
+          <li><span class="pname">Artiom</span>
+            <a class="logo logo-imdb" href="https://www.imdb.com/name/nm18119975/" target="_blank" rel="noopener" aria-label="Artiom on IMDb (opens in a new tab)"><img src="images/logo-imdb.svg" alt="" width="79" height="44"></a>
+            <a class="logo logo-kp" href="https://www.kinopoisk.ru/name/10375398/" target="_blank" rel="noopener" aria-label="Artiom on Kinopoisk (opens in a new tab)"><img src="images/logo-kinopoisk.svg" alt="" width="28" height="28"></a></li>
+        </ul>
       </div>
     </div>
   </section>
