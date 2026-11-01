@@ -296,6 +296,16 @@ h3 { font-weight: 400; }
 .people .logo { min-width: 44px; }
 .people .pname { font-family: var(--font-display); font-weight: 300; font-size: 1.25rem; min-width: 6.5rem; }
 .about-copy h2 { margin-bottom: 24px; }
+@media (min-width: 900px) {
+  /* keep the whole text column within the photo's top and bottom edges */
+  .about-layout { align-items: stretch; }
+  .about-photo { margin-top: 0; aspect-ratio: auto; min-height: 0; }
+  .about-photo img { position: absolute; inset: 0; }
+  .about-copy h2 { margin-bottom: 14px; line-height: 1; }
+  .about-text { font-size: clamp(1.05rem, 1.5vw, 1.35rem); line-height: 1.42; }
+  .people { margin-top: 22px; padding-top: 12px; gap: 0; }
+  .people .pname { font-size: 1.05rem; }
+}
 .about-text { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.25rem, 2.3vw, 1.6rem); line-height: 1.45; max-width: 40rem; text-wrap: pretty; }
 
 /* ---------- Contact ---------- */
