@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found — KOLOMNA SCORE</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d1013">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<style>
+@font-face { font-family: "Outfit"; font-weight: 300; font-style: normal; font-display: swap; src: url("/fonts/outfit-300.woff") format("woff"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 400; font-style: normal; font-display: swap; src: url("/fonts/hanken-grotesk-400.woff") format("woff"); }
+@font-face { font-family: "Hanken Grotesk"; font-weight: 500; font-style: normal; font-display: swap; src: url("/fonts/hanken-grotesk-500.woff") format("woff"); }
+:root { --ink: #0d1013; --bone: #ece8df; --mute: #9a9fa4; --accent: #b9c9ce; color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--ink) url("/images/hero-poster.jpg") center / cover no-repeat;
+  color: var(--bone); font-family: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; display: grid; grid-template-rows: auto 1fr auto; position: relative;
+}
+body::before { content: ""; position: fixed; inset: 0; background: linear-gradient(to top, rgba(13,16,19,.97) 0%, rgba(13,16,19,.8) 45%, rgba(13,16,19,.62) 100%); }
+header, main, footer { position: relative; padding-inline: max(clamp(20px, 5vw, 64px), env(safe-area-inset-left, 0px)); }
+header { padding-top: max(22px, env(safe-area-inset-top, 0px)); }
+.brand { font-size: .8rem; letter-spacing: .28em; font-weight: 500; color: var(--bone); text-decoration: none; }
+main { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 960px; }
+.code { font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+h1 { font-family: "Outfit", "Hanken Grotesk", system-ui, sans-serif; font-weight: 300; font-size: clamp(2.4rem, 7vw, 4.6rem); line-height: 1.05; margin: 0 0 18px; text-wrap: balance; }
+p.lead { color: var(--mute); font-size: clamp(1rem, 2vw, 1.2rem); max-width: 34rem; margin: 0 0 32px; }
+.cta { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 26px; border: 1px solid rgba(236,232,223,.5); border-radius: 999px; color: var(--bone); text-decoration: none; font-size: .86rem; letter-spacing: .14em; text-transform: uppercase; transition: background .25s, color .25s, border-color .25s; }
+.cta:hover, .cta:focus-visible { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+footer { padding-block: 24px max(24px, env(safe-area-inset-bottom, 0px)); color: var(--mute); font-size: .9rem; }
+footer a { color: var(--bone); }
+</style>
+</head>
+<body>
+<header><a class="brand" href="/">KOLOMNA SCORE</a></header>
+<main>
+  <p class="code">Error 404</p>
+  <h1>This page doesn’t exist</h1>
+  <p class="lead">The link may be mistyped or the page may have moved. The music is on the home page.</p>
+  <a class="cta" href="/">Back to home →</a>
+</main>
+<footer>Or write to us: <a href="mailto:info@kolomnascore.com">info@kolomnascore.com</a></footer>
+</body>
+</html>
